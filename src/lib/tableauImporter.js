@@ -10,17 +10,23 @@ const getSchemaArgs = statistics => {
 }
 
 const getQuery = (region, statistics) => {
-  const argsToFilter = a => a.map(arg => `${arg}: {nin: []}`).join(',')
+  const argToFilter = a => `${a}: {nin: []}`
+  const argsToFilter = a =>
+    a.length > 0
+      ? `(filter: {${a.map(arg => argToFilter(arg)).join(',')}})`
+      : ''
   const argsToFields = a => a.join('\n')
   const args = getSchemaArgs(statistics)
   const argumentNames = Object.keys(args)
 
-  return `
+  console.log('argumentNames', argumentNames)
+
+  const query = `
         {
           region(id: "${region}") {
             id
             name
-              ${statistics}(filter: {${argsToFilter(argumentNames)}}) {
+              ${statistics}${argsToFilter(argumentNames)} {
               value
               year
               ${argsToFields(argumentNames)}
@@ -28,6 +34,9 @@ const getQuery = (region, statistics) => {
           }
         }
       `
+  console.log('query', query)
+
+  return query
 }
 
 const connector = tableau.makeConnector()
