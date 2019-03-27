@@ -28,6 +28,6 @@ export const actions = {
         }
       }
     } = getState()
-    submit(datenguideApiUrl, region.value, statistics)
+    submit(datenguideApiUrl, region.value, statistics.value)
   }
 }
