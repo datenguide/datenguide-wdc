@@ -2,7 +2,7 @@
 import gql from 'graphql-tag'
 
 import schema from './schema.json'
-import { apolloClient } from './apiConnector'
+import { client } from './apiConnector'
 
 // TODO load schema from API server
 const getSchemaArgs = statistics => {
@@ -19,9 +19,7 @@ const getQuery = (region, statistics) => {
   const args = getSchemaArgs(statistics)
   const argumentNames = Object.keys(args)
 
-  console.log('argumentNames', argumentNames)
-
-  const query = `
+  return `
         {
           region(id: "${region}") {
             id
@@ -34,9 +32,6 @@ const getQuery = (region, statistics) => {
           }
         }
       `
-  console.log('query', query)
-
-  return query
 }
 
 const connector = tableau.makeConnector()
@@ -83,10 +78,11 @@ connector.getSchema = schemaCallback => {
 connector.getData = async (table, doneCallback) => {
   const { apiUrl, region, statistics } = JSON.parse(tableau.connectionData)
 
-  const result = await apolloClient(apiUrl).query({
+  const result = await client.query({
     query: gql`
       ${getQuery(region, statistics)}
-    `
+    `,
+    context: { uri: apiUrl }
   })
   table.appendRows(result.data.region[statistics])
   doneCallback()

@@ -4,20 +4,22 @@ import ApolloClient from 'apollo-client'
 import fetch from 'unfetch'
 import gql from 'graphql-tag'
 
-const apiConnector = {
-  client: null
+const context = {
+  uri: null
 }
 
-export const initialize = uri => {
-  // custom initialization to make Tableau happy
-  apiConnector.client = new ApolloClient({
-    link: createHttpLink({
-      uri: `${uri}/graphql`,
-      fetch
-    }),
-    cache: new InMemoryCache()
-  })
-  return apiConnector.client.query({
+export const client = new ApolloClient({
+  link: createHttpLink({
+    // uri: `${uri}/graphql`,
+    fetch
+  }),
+  cache: new InMemoryCache()
+})
+
+
+export const initialize = async uri => {
+  context.uri = uri
+  return client.query({
     query: gql`
       {
         region(id: "11") {
@@ -25,16 +27,8 @@ export const initialize = uri => {
           name
         }
       }
-    `
-  })
+    `,
+    context
+  } )
 }
 
-export const apolloClient = uri => {
-  if (uri) {
-    initialize(uri)
-  }
-  if (apiConnector.client) {
-    return apiConnector.client
-  }
-  throw new Error('Apollo Client has not been initialized')
-}

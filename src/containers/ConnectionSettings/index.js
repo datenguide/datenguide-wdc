@@ -11,7 +11,7 @@ const ConnectionSettings = ({ handleSubmit, testConnection, connected }) => (
   <Card className="dg-connectionsettings">
     <h5>1. Connect to datenguide</h5>
     <form>
-      <FormGroup label="datenguide API URL" labelFor="datenguideApiUrl">
+      <FormGroup label="datenguide API Endpoint" labelFor="datenguideApiUrl">
         <Field
           name="datenguideApiUrl"
           type="text"
@@ -25,7 +25,7 @@ const ConnectionSettings = ({ handleSubmit, testConnection, connected }) => (
           id="datenguideApiUrl"
         />
       </FormGroup>
-      <Button onClick={() => testConnection()}>Connect</Button>
+      <Button onClick={() => testConnection()}>Test Connection</Button>
     </form>
   </Card>
 )

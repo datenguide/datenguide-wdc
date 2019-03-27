@@ -6,23 +6,18 @@ ___( o)>
 
 import { createSlice } from 'redux-starter-kit'
 import submit from '../../lib/tableauImporter'
-import { AppToaster } from '../../components/Toaster'
-import { Intent } from '@blueprintjs/core'
 
 const slice = createSlice({
   slice: 'dataselector',
   initialState: {},
-  reducers: {
-    importDataSuccess: state => {},
-    importDataFailure: state => {}
-  }
+  reducers: {}
 })
 
 export const { reducer } = slice
 
 export const actions = {
   ...slice.actions,
-  importData: payload => (dispatch, getState) => {
+  importData: () => (dispatch, getState) => {
     const {
       form: {
         dataselector: {
@@ -33,6 +28,6 @@ export const actions = {
         }
       }
     } = getState()
-    submit(datenguideApiUrl, region, statistics)
+    submit(datenguideApiUrl, region.value, statistics)
   }
 }

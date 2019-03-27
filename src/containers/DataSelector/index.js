@@ -2,9 +2,11 @@ import React from 'react'
 import { Card, FormGroup, InputGroup, Button } from '@blueprintjs/core'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import AsyncSelect from 'react-select/lib/Async'
 import { Field, reduxForm } from 'redux-form'
 
 import { actions } from './ducks'
+import { getRegions, getStatistics} from '../../lib/schema'
 
 import './styles.scss'
 
@@ -15,7 +17,15 @@ const DataSelector = ({ importData }) => (
       <Field
         name="region"
         type="text"
-        component={({ input }) => <InputGroup {...input} />}
+        component={({ input }) => (
+          <AsyncSelect
+            isSearchable
+            loadOptions={(inputValue, callback) => {
+              callback(getRegions(inputValue))
+            }}
+            {...input}
+          />
+        )}
         id="region"
       />
     </FormGroup>
@@ -23,7 +33,13 @@ const DataSelector = ({ importData }) => (
       <Field
         name="statistics"
         type="text"
-        component={({ input }) => <InputGroup {...input} />}
+        component={({ input }) =>   <AsyncSelect
+          isSearchable
+          loadOptions={(inputValue, callback) => {
+            callback(getStatistics(inputValue))
+          }}
+          {...input}
+        />}
         id="statistics"
       />
     </FormGroup>
