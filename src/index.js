@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { render } from 'react-dom'
 import { configureStore } from 'redux-starter-kit'
 
-import App from './containers/App'
+import App from './components/App'
 
 import rootReducer from './ducks'
 

@@ -19,6 +19,7 @@
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-starter-kit": "^0.4.3",
+    "redux-thunk": "^2.3.0",
     "unfetch": "^4.1.0"
   },
   "devDependencies": {

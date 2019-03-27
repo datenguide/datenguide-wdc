@@ -4,9 +4,12 @@ ___( o)>
  `---'
 */
 
-import { combineReducers } from 'redux'
-import { reducer as formReducer } from 'redux-form'
+import { reducer as form } from 'redux-form'
+import { reducer as connection } from './containers/ConnectionSettings/ducks'
+import { reducer as dataselector } from './containers/DataSelector/ducks'
 
-import { app } from './containers/App/ducks'
-
-export default combineReducers({ app, form: formReducer })
+export default {
+  form,
+  connection,
+  dataselector
+}
