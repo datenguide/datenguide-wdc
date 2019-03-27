@@ -1,0 +1,10 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+
+.dg-app {
+  &__wrapper {
+    padding: 10px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
