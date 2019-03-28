@@ -36,7 +36,7 @@ const getQuery = (region, statistics) => {
 
 const connector = tableau.makeConnector()
 
-connector.getSchema = schemaCallback => {
+const getTableSchema = statistic => {
   const cols = [
     {
       id: 'id',
@@ -53,9 +53,7 @@ connector.getSchema = schemaCallback => {
       dataType: tableau.dataTypeEnum.float
     }
   ]
-
-  const { statistics } = JSON.parse(tableau.connectionData)
-  const args = getSchemaArgs(statistics)
+  const args = getSchemaArgs(statistic.value)
   const argumentNames = Object.keys(args)
 
   argumentNames.forEach(arg => {
@@ -66,25 +64,29 @@ connector.getSchema = schemaCallback => {
     })
   })
 
-  const tableSchema = {
-    id: 'Datenguide',
-    alias: 'Datenguide Web Data Connector Data',
+  return {
+    id: statistic.value,
+    alias: statistic.label,
     columns: cols
   }
+}
 
-  schemaCallback([tableSchema])
+connector.getSchema = schemaCallback => {
+  const { statistics } = JSON.parse(tableau.connectionData)
+  schemaCallback(statistics.map(s => getTableSchema(s)))
 }
 
 connector.getData = async (table, doneCallback) => {
-  const { apiUrl, region, statistics } = JSON.parse(tableau.connectionData)
+  const { apiUrl, region } = JSON.parse(tableau.connectionData)
+  debugger
 
   const result = await client.query({
     query: gql`
-      ${getQuery(region, statistics)}
+      ${getQuery(region, table.tableInfo.id)}
     `,
     context: { uri: apiUrl }
   })
-  table.appendRows(result.data.region[statistics])
+  table.appendRows(result.data.region[table.tableInfo.id])
   doneCallback()
 }
 tableau.registerConnector(connector)

@@ -41,7 +41,7 @@ ConnectionSettings.defaultProps = {}
 export default connect(
   state => {
     return ({
-      initialValues: { datenguideApiUrl: 'http://localhost:3030' },
+      initialValues: { datenguideApiUrl: 'http://localhost:3030/graphql' },
       ...state.connection
     });
   },

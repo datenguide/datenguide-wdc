@@ -42,6 +42,7 @@ const DataSelector = ({ importData }) => (
               callback(getStatistics(inputValue))
             }}
             {...input}
+            isMulti
             onBlur={event => event.preventDefault()}
             onChange={input.onChange}
           />
