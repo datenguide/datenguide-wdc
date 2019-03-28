@@ -6,10 +6,10 @@ import schema from './schema.json'
 // move to server?
 
 const regionIndex = flexsearch.create()
-Object.keys(regions).forEach(key => regionIndex.add(key, regions[key]))
+Object.keys(regions).forEach(key => regionIndex.add(key, `${key} - ${regions[key]}`))
 
 const statisticsIndex = flexsearch.create()
-Object.keys(schema).forEach(key => statisticsIndex.add(key, schema[key].name))
+Object.keys(schema).forEach(key => statisticsIndex.add(key, `${key} - ${schema[key].name}`))
 
 export const getRegions = filter =>
   regionIndex
