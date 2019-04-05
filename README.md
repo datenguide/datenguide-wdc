@@ -12,7 +12,9 @@ for more information and download options for your platform.
 
 * Open Tableau, select "Connect To a Server -> Web Data Connector"
 
-![Example Tableau Visualization](https://raw.githubusercontent.com/datenguide/datenguide-wdc/master/docs/assets/connect.png)
+
+<img src="https://raw.githubusercontent.com/datenguide/datenguide-wdc/master/docs/assets/connect.png" width="200">
+
 
 * Navigate to a running instance of datenguide Web Data Connector
 * Enter the URL to the graphl-endpoint of datenguide, click 'Test Connection' to
@@ -20,8 +22,8 @@ ensure the connection is working
 * Select a region and one or more statistics to import
 * Click 'Import'
 
-![Example Tableau Visualization](https://raw.githubusercontent.com/datenguide/datenguide-wdc/master/docs/assets/wdc_ui.png)
 
+<img src="https://raw.githubusercontent.com/datenguide/datenguide-wdc/master/docs/assets/wdc_ui.png" width="700">
 The selected statistics are now available in Tableau.
 
 ## Visualizing data in Tableau
