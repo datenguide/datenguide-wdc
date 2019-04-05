@@ -7,7 +7,7 @@ Web Data Connector for Datenguide to import statistical data into Tableau.
 ## Importing data into Tableau
 
 A working installation of Tableau is required. For more information visit https://www.tableau.com.
-There is also a free community version of Tableau: Tableau Public. visit https://public.tableau.com
+There is also a free community version of Tableau: Tableau Public. Visit https://public.tableau.com
 for more information and download options for your platform. 
 
 * Open Tableau, select "Connect To a Server -> Web Data Connector"
@@ -41,6 +41,6 @@ This is an example visualization of the WAHL09 statistic as a starting point:
 * Clone the repository
 * `yarn install`
 * `yarn dev`
-* The web connector will be running at `http://localhost:300`
+* The web connector will be running at `http://localhost:3000`
 * To work on the web connector, Tableau offers a Simulator (as the web connector cannot do anything useful on its own).
 See https://tableau.github.io/webdataconnector/docs/#run-the-simulator for more information on how to set this up.
