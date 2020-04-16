@@ -5,14 +5,14 @@ ___( o)>
  `---'
 */
 
-import { createSlice } from 'redux-starter-kit'
+import { createSlice } from '@reduxjs/toolkit'
 import { Intent } from '@blueprintjs/core'
 
 import { initialize } from '../../lib/apiConnector'
 import { AppToaster } from '../../components/Toaster'
 
 const slice = createSlice({
-  slice: 'connection',
+  name: 'connection',
   initialState: { connected: false },
   reducers: {
     initializeClientSuccess: (state) => {

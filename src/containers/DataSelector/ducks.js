@@ -4,11 +4,11 @@ ___( o)>
  `---'
 */
 
-import { createSlice } from 'redux-starter-kit'
+import { createSlice } from '@reduxjs/toolkit'
 import submit from '../../lib/tableauImporter'
 
 const slice = createSlice({
-  slice: 'dataselector',
+  name: 'dataselector',
   initialState: {},
   reducers: {},
 })
