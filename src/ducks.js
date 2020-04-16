@@ -11,5 +11,5 @@ import { reducer as dataselector } from './containers/DataSelector/ducks'
 export default {
   form,
   connection,
-  dataselector
+  dataselector,
 }

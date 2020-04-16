@@ -33,20 +33,22 @@ const ConnectionSettings = ({ handleSubmit, testConnection, connected }) => (
 ConnectionSettings.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   connected: PropTypes.bool.isRequired,
-  testConnection: PropTypes.func.isRequired
+  testConnection: PropTypes.func.isRequired,
 }
 
 ConnectionSettings.defaultProps = {}
 
 export default connect(
-  state => {
-    return ({
-      initialValues: { datenguideApiUrl: 'https://api-next.datengui.de/graphql' },
-      ...state.connection
-    });
+  (state) => {
+    return {
+      initialValues: {
+        datenguideApiUrl: 'https://api-next.datengui.de/graphql',
+      },
+      ...state.connection,
+    }
   },
   {
-    ...actions
+    ...actions,
     // onSubmit: (values, dispatch, props) => dispatch(actions.addTodo(values))
   }
 )(reduxForm({ form: 'connectionsettings' })(ConnectionSettings))

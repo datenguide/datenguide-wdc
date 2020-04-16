@@ -5,19 +5,18 @@ import fetch from 'unfetch'
 import gql from 'graphql-tag'
 
 const context = {
-  uri: null
+  uri: null,
 }
 
 export const client = new ApolloClient({
   link: createHttpLink({
     // uri: `${uri}/graphql`,
-    fetch
+    fetch,
   }),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 })
 
-
-export const initialize = async uri => {
+export const initialize = async (uri) => {
   context.uri = uri
   return client.query({
     query: gql`
@@ -28,7 +27,6 @@ export const initialize = async uri => {
         }
       }
     `,
-    context
-  } )
+    context,
+  })
 }
-

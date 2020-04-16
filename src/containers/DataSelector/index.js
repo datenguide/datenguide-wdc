@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-handler-names */
 import React from 'react'
 import { Card, FormGroup, Button } from '@blueprintjs/core'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import AsyncSelect from 'react-select/lib/Async'
+import AsyncSelect from 'react-select/async'
 import { Field, reduxForm, change } from 'redux-form'
 
 import { actions } from './ducks'
@@ -24,7 +25,7 @@ const DataSelector = ({ importData }) => (
               callback(getRegions(inputValue))
             }}
             {...input}
-            onBlur={event => event.preventDefault()}
+            onBlur={(event) => event.preventDefault()}
             onChange={input.onChange}
           />
         )}
@@ -43,7 +44,7 @@ const DataSelector = ({ importData }) => (
             }}
             {...input}
             isMulti
-            onBlur={event => event.preventDefault()}
+            onBlur={(event) => event.preventDefault()}
             onChange={input.onChange}
           />
         )}
@@ -55,19 +56,19 @@ const DataSelector = ({ importData }) => (
 )
 
 DataSelector.propTypes = {
-  importData: PropTypes.func.isRequired
+  importData: PropTypes.func.isRequired,
 }
 
 DataSelector.defaultProps = {}
 
 export default connect(
-  state => ({
+  (state) => ({
     ...state.dataselector,
-    initialValues: {}
+    initialValues: {},
   }),
   {
     ...actions,
-    change
+    change,
     // onSubmit: (values, dispatch, props) => dispatch(actions.addTodo(values))
   }
 )(reduxForm({ form: 'dataselector' })(DataSelector))

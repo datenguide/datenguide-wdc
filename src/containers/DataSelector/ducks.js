@@ -10,7 +10,7 @@ import submit from '../../lib/tableauImporter'
 const slice = createSlice({
   slice: 'dataselector',
   initialState: {},
-  reducers: {}
+  reducers: {},
 })
 
 export const { reducer } = slice
@@ -21,13 +21,13 @@ export const actions = {
     const {
       form: {
         dataselector: {
-          values: { region, statistics }
+          values: { region, statistics },
         },
         connectionsettings: {
-          values: { datenguideApiUrl }
-        }
-      }
+          values: { datenguideApiUrl },
+        },
+      },
     } = getState()
     submit(datenguideApiUrl, region.value, statistics)
-  }
+  },
 }

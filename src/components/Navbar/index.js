@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Button, Alignment } from '@blueprintjs/core'
+import { Navbar, Alignment } from '@blueprintjs/core'
 
 const ConnectorNavbar = () => (
   <Navbar>

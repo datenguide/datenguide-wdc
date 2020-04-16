@@ -15,45 +15,43 @@ const slice = createSlice({
   slice: 'connection',
   initialState: { connected: false },
   reducers: {
-    initializeClientSuccess: state => {
+    initializeClientSuccess: (state) => {
       state.connected = true
     },
-    initializeClientFailure: state => {
+    initializeClientFailure: (state) => {
       state.connected = false
-    }
-  }
+    },
+  },
 })
 
 export const { reducer } = slice
-
 
 const showSuccessToast = () =>
   AppToaster.show({
     message: 'datenguide API Connection successful',
     intent: Intent.SUCCESS,
-    icon: 'tick-circle'
+    icon: 'tick-circle',
   })
 
-const showFailureToast = error =>
+const showFailureToast = (error) =>
   AppToaster.show({
     message: `Could not connect to datenguide API: ${error}`,
     intent: Intent.DANGER,
-    icon: 'error'
+    icon: 'error',
   })
-
 
 export const actions = {
   ...slice.actions,
-  testConnection: payload => (dispatch, getState) => {
+  testConnection: (payload) => (dispatch, getState) => {
     const {
       form: {
         connectionsettings: {
-          values: { datenguideApiUrl }
-        }
-      }
+          values: { datenguideApiUrl },
+        },
+      },
     } = getState()
     initialize(datenguideApiUrl)
-      .then(response => {
+      .then((response) => {
         if (response.data != null) {
           dispatch(actions.initializeClientSuccess())
           showSuccessToast()
@@ -62,9 +60,9 @@ export const actions = {
           showFailureToast('no data received')
         }
       })
-      .catch(e => {
+      .catch((e) => {
         dispatch(actions.initializeClientFailure())
         showFailureToast(e)
       })
-  }
+  },
 }
