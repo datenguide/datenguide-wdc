@@ -49,7 +49,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint --ignore-pattern 'src/lib/vendor' . --fix",
+    "lint": "npx eslint --ignore-pattern 'src/lib/vendor' src --fix",
     "prettier": "npx prettier --write 'src/**/*.{js,json,css,yml,mdx}'",
     "pretty-quick": "npx pretty-quick --staged"
   },
